@@ -47,7 +47,7 @@ export default function CursorDot() {
     };
 
     const tick = () => {
-      const lerp = 0.2;
+      const lerp = 0.0;
       pos.current.x += (target.current.x - pos.current.x) * lerp;
       pos.current.y += (target.current.y - pos.current.y) * lerp;
       dot.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0) scale(${scaleRef.current})`;

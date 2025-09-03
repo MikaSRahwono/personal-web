@@ -6,6 +6,7 @@ import Socials from "./components/socials";
 import Stack from "./components/stack";
 import Footer from "./components/footer";
 import Organizations from "./components/organizations";
+import Changelog from "./components/changelog";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Organizations />
+      <Changelog limit={3} heading="My Changelog" step={2} />;
       <Blogs />
       <Socials />
       <Footer/>

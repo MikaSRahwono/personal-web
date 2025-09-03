@@ -218,3 +218,211 @@ export const organizations: OrgItem[] = [
       "Coordinated the student team to ship new mobile features, data integrations, and content workflows."
   },
 ];
+
+// lib/data.ts — Changelog types + data
+
+export const CHANGELOG_CATS = [
+  "shipped",
+  "learned",
+  "improved",
+  "events",
+  "experiments",
+] as const;
+export type ChangelogCat = typeof CHANGELOG_CATS[number];
+
+export type ChangelogEntry = {
+  version: string; // vYY.MM[.patch]
+  date: string;    // YYYY-MM-DD
+  summary: string;
+  categories: Partial<Record<ChangelogCat, string[]>>;
+  metrics?: Record<string, string | number>;
+  tags?: string[];
+  links?: { title: string; url: string }[];
+};
+
+// Examples — replace/add as you like
+export const changelog: ChangelogEntry[] = [
+  {
+    version: "v25.09",
+    date: "2025-09-01",
+    summary:
+      "Portfolio refresh + SRE recap + Redirectly progress; turned internship outcomes into clear, measurable artifacts.",
+    categories: {
+      shipped: [
+        "SRE Internship recap page (cost forecasting, Datadog dashboards, Jira automation)",
+        "Redirectly analytics section (click trends & infra notes)",
+        "Projects grid cleanup with tags and quick-links",
+      ],
+      improved: [
+        "Consistent metrics on project cards (endpoints, tables, users)",
+        "Copy polish across hero/experience to emphasize outcomes over tools",
+      ],
+      learned: [
+        "Turning ops telemetry into business-facing metrics",
+        "PrestoDB to cost insights pipeline: query → metric → alert",
+      ],
+      events: ["Internship retrospective published"],
+    },
+    metrics: { prestoQueries: 4, datadogCustomMetrics: 4, jiraAutoFlows: 1 },
+    tags: ["site", "sre", "datadog", "go", "terraform"],
+    links: [
+      { title: "LinkedIn", url: "http://www.linkedin.com/in/mikasrahwono" },
+      { title: "Grab (team context)", url: "https://www.grab.com/id/" },
+    ],
+  },
+  {
+    version: "v25.08",
+    date: "2025-08-20",
+    summary:
+      "Redirectly beta hardens: CI/CD with multi-env isolation and serverless analytics stream.",
+    categories: {
+      shipped: [
+        "CI/CD pipelines with dev/staging/prod isolation",
+        "Auth via AWS Cognito for dashboard access",
+        "Click analytics via DynamoDB Streams (Lambda triggers)",
+      ],
+      improved: ["Terraform modules for API Gateway, Lambda, DynamoDB, Redis"],
+      learned: [
+        "Event-driven serverless patterns on AWS",
+        "Operational guardrails for low-cost, always-on services",
+      ],
+      experiments: ["Lambda@Edge link preview (paused)"],
+    },
+    metrics: { environments: 3 },
+    tags: ["serverless", "aws", "redirectly", "iac"],
+    links: [{ title: "Dicoding Cloud Architect Cert", url: "https://www.dicoding.com/certificates/1OP8N6LKQXQK" }],
+  },
+  {
+    version: "v25.07",
+    date: "2025-07-05",
+    summary:
+      "SRE deliverables shipped: Datadog dashboards, weekly alerts, and Jira ticketing automation.",
+    categories: {
+      shipped: [
+        "Datadog dashboards to track top overbudget services",
+        "Weekly cost/overspend alerts",
+        "Jira ticketing automation using Go + Terraform + AWS Lambda",
+      ],
+      learned: [
+        "Forecasting overspend from metrics",
+        "Bridging platform telemetry with workflow automation",
+      ],
+      events: ["SRE internship wrap-up milestones"],
+    },
+    metrics: { dashboards: 1, alertsCadencePerWeek: 1 },
+    tags: ["sre", "datadog", "go", "terraform", "aws"],
+    links: [{ title: "Datadog", url: "https://www.datadoghq.com/" }],
+  },
+  {
+    version: "v25.06",
+    date: "2025-06-10",
+    summary:
+      "Started Redirectly: scalable serverless URL shortener with real-time analytics.",
+    categories: {
+      shipped: [
+        "API Gateway + Lambda + DynamoDB + Redis cache",
+        "React + Tailwind dashboard scaffold",
+      ],
+      learned: ["AWS Cognito user pools & protected routes"],
+      events: ["Side project announcement"],
+    },
+    metrics: { services: 5 },
+    tags: ["serverless", "react", "tailwind", "aws"],
+    links: [
+      { title: "Redis", url: "https://redis.io/" },
+      { title: "DynamoDB Streams", url: "https://aws.amazon.com/dynamodb/streams/" },
+    ],
+  },
+  {
+    version: "v25.02",
+    date: "2025-02-28",
+    summary:
+      "Farm Management System v1 complete: multi-entity ERD, analytics, and EC2 deploy.",
+    categories: {
+      shipped: [
+        "75+ API endpoints, 20+ tables (auth, livestock stats/management, preferences)",
+        "Frontend + backend deployed on AWS EC2 with docker-compose",
+      ],
+      improved: ["JWT handling & deployment docs"],
+      learned: ["Ops trade-offs of EC2 vs. serverless for CRUD-heavy apps"],
+    },
+    metrics: { apiEndpoints: 75, tables: 20 },
+    tags: ["backend", "django", "aws", "ec2", "docker"],
+  },
+  {
+    version: "v24.12",
+    date: "2024-12-15",
+    summary:
+      "Graduated Apple Developer Academy; shipped Manta Diving app with HPA + Grafana.",
+    categories: {
+      shipped: [
+        "UIKit/SwiftUI app (pagination, pull-to-refresh, blog webviews, deep-linking, RxSwift)",
+        "Prometheus + Grafana monitoring for 3+ services",
+        "Kubernetes Horizontal Pod Autoscaler via Helm",
+      ],
+      events: ["Apple Developer Academy graduation"],
+      learned: ["K8s autoscaling & service SLOs", "Observability fundamentals"],
+    },
+    metrics: { servicesManaged: 5, servicesMonitored: 3 },
+    tags: ["ios", "kubernetes", "observability", "helm"],
+    links: [
+      { title: "Apple Developer Academy", url: "https://developer.apple.com/academies/" },
+      { title: "Grafana", url: "https://grafana.com/" },
+    ],
+  },
+  {
+    version: "v24.08",
+    date: "2024-08-20",
+    summary:
+      "Thesis project (KATALIS) shipped: marketplace + dashboards over a complex ERD.",
+    categories: {
+      shipped: [
+        "30+ tables & 150+ endpoints (special-course unique steps, submissions, logs)",
+        "Topic marketplace & role-based dashboards",
+        "Infra: backend + Redis + reverse proxy + PostgreSQL",
+      ],
+      learned: ["Domain modeling for evolving workflows", "API pagination & caching"],
+      events: ["Bachelor graduation (Universitas Indonesia)"],
+    },
+    metrics: { tables: 30, endpoints: 150 },
+    tags: ["thesis", "django", "postgres", "redis"],
+    links: [{ title: "Universitas Indonesia", url: "https://www.ui.ac.id/" }],
+  },
+  {
+    version: "v23.12",
+    date: "2023-12-10",
+    summary:
+      "Ops automation at scale: documents & reporting flows for 10+ faculties.",
+    categories: {
+      shipped: [
+        "Power Automate flows for file routing/renaming across 10+ faculties",
+        "Apps Script student report generator (80% faster)",
+      ],
+      learned: ["No/low-code orchestration; human-in-the-loop checks"],
+      events: ["Part-time role completion at Universitas Indonesia"],
+    },
+    metrics: { requestsProcessed: 500, weeklyHoursSaved: 10, timeReductionPct: "70–80%" },
+    tags: ["automation", "power-automate", "apps-script"],
+  },
+  {
+    version: "v23.11",
+    date: "2023-11-15",
+    summary:
+      "JakLingko e-ticketing features live; payments and deep-links unified in N’Lingko.",
+    categories: {
+      shipped: [
+        "Dynamic bus seating patterns",
+        "Refund/reschedule flows + Midtrans integration",
+        "Deep-linking + webview for blogs/apps",
+      ],
+      events: ["Cross-team launch across mobile, backend, dashboard"],
+      learned: ["Public-transport UX & reliability constraints"],
+    },
+    metrics: { integratedApps: 3, acquiredUsers: 5000 },
+    tags: ["flutter", "payments", "public-transport"],
+    links: [
+      { title: "JakLingko Indonesia", url: "https://www.jaklingkoindonesia.co.id/id" },
+      { title: "Midtrans", url: "https://midtrans.com/" },
+    ],
+  },
+];

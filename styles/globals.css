@@ -186,3 +186,75 @@ input, textarea, [contenteditable="true"] { cursor: text !important; }
     transform .075s ease;
   will-change: transform;
 }
+
+/* ----- Changelog category disclosures (cardless) ----- */
+.disclosure { margin-top: .5rem; }
+
+.disclosure-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+
+  /* cardless */
+  padding: .25rem 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  list-style: none;
+}
+
+.disclosure-summary::-webkit-details-marker { display: none; }
+
+.disclosure-title {
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--sky);
+  border-bottom: 1px solid color-mix(in srgb, var(--sky) 40%, transparent);
+}
+
+.disclosure-summary:hover .disclosure-title {
+  border-bottom-color: color-mix(in srgb, var(--sky) 70%, transparent);
+}
+
+.disclosure-right { display: inline-flex; align-items: center; gap: .5rem; }
+
+.disclosure-count {
+  font-size: .7rem;
+  color: rgba(255,255,255,.75);
+  /* tiny pill but very light so it doesn't feel like a card */
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  padding: .1rem .4rem;
+  border-radius: 999px;
+}
+
+.disclosure-chevron {
+  transition: transform .2s ease;
+  color: var(--sky);
+}
+.disclosure[open] .disclosure-chevron { transform: rotate(180deg); }
+
+/* content list, minimal */
+.disclosure-list {
+  margin: .45rem 0 0 0;
+  padding: 0 0 0 1.25rem;
+  list-style: disc;
+  border-left: 1px dashed rgba(255,255,255,.15);
+  margin-left: .35rem; /* align the dashed line nicely */
+}
+
+.disclosure-list > li {
+  margin: .25rem 0;
+  color: rgba(255,255,255,.85);
+  font-size: .9rem;
+}
+
+/* keyboard focus (accessible) */
+.disclosure-summary:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--sky) 60%, transparent);
+  outline-offset: 2px;
+  border-radius: .25rem;
+}

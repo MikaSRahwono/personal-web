@@ -13,7 +13,7 @@ export default function Footer() {
         src="/tennis-ball.png"
         size={56}
         speed={1.1}
-        evadeRadius={70}
+        evadeRadius={40}
         zIndex={60}
       />
     </footer>
