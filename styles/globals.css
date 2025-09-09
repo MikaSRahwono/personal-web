@@ -174,7 +174,7 @@ input, textarea, [contenteditable="true"] { cursor: text !important; }
   width: 16px; height: 16px;
   border-radius: 9999px;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9900;
   opacity: 0;
 
   background: #ffffff;       

@@ -7,6 +7,7 @@ import Stack from "./components/stack";
 import Footer from "./components/footer";
 import Organizations from "./components/organizations";
 import Changelog from "./components/changelog";
+import StickerTool from "./components/sticker-tool";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Changelog limit={3} heading="My Changelog" step={2} />;
       <Blogs />
       <Socials />
+      <StickerTool />
       <Footer/>
     </main>
   );
